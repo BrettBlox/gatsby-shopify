@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import React, { useContext } from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import '../style.scss'
-import logo from '../images/logo.svg'
 import { StoreContext } from '../context/StoreContext'
+import logo from '../images/logo.svg'
+import Cart from './Cart/Cart'
 
 const Header = ({ siteTitle }) => {
   const { isCartOpen, addProductToCart, client } = useContext(StoreContext)
@@ -20,6 +21,7 @@ const Header = ({ siteTitle }) => {
           <FaShoppingCart onClick={addProductToCart} style={{ color: 'white', height: 30, width: 30 }} />
         </div>
       </div>
+      <Cart />
     </header>
   )
 }
