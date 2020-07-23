@@ -3,7 +3,9 @@ import { animated } from 'react-spring'
 import { StoreContext } from '../../context/StoreContext'
 
 const Cart = ({ style }) => {
-  const { isCartOpen, checkout, toggleCartOpen, removeProductFromCart, checkCoupon } = useContext(StoreContext)
+  const { isCartOpen, checkout, toggleCartOpen, removeProductFromCart, checkCoupon, removeCoupon } = useContext(
+    StoreContext
+  )
 
   const [coupon, setCoupon] = useState('')
 
@@ -23,7 +25,6 @@ const Cart = ({ style }) => {
       }}
     >
       <button
-        type='button'
         style={{
           background: 'var(--red)',
           position: 'absolute',
@@ -55,7 +56,6 @@ const Cart = ({ style }) => {
                 <p className='subtitle is-5'>${item.variant.price}</p>
                 <p className='subtitle is-5'>Qty: {item.quantity}</p>
                 <button
-                  type='button'
                   onClick={() => removeProductFromCart(item.id)}
                   className='is-small button is-danger is-outlined'
                 >
@@ -66,26 +66,41 @@ const Cart = ({ style }) => {
           ))}
 
           <div>
-            <form
-              onSubmit={e => {
-                e.preventDefault()
-                checkCoupon(coupon)
-              }}
-            >
-              <div className='field'>
-                <label htmlFor='coupon' className='label'>
-                  Coupon
-                </label>
-                <input
-                  className='input'
-                  id='coupon'
-                  value={coupon}
-                  onChange={e => setCoupon(e.target.value)}
-                  type='text'
-                />
-              </div>
-              <button className='button'>Add Coupon</button>
-            </form>
+            {checkout.discountApplications.length > 0 ? (
+              <p>
+                Coupon:
+                <h5 className='title'>
+                  {checkout.discountApplications[0].code} - {checkout.discountApplications[0].value.percentage}% off
+                </h5>
+                <button
+                  onClick={() => removeCoupon(checkout.discountApplications[0].code)}
+                  className='is-small button is-danger is-outlined'
+                >
+                  Remove
+                </button>
+              </p>
+            ) : (
+              <form
+                onSubmit={e => {
+                  e.preventDefault()
+                  checkCoupon(coupon)
+                }}
+              >
+                <div className='field'>
+                  <label htmlFor='coupon' className='label'>
+                    Coupon
+                  </label>
+                  <input
+                    className='input'
+                    id='coupon'
+                    value={coupon}
+                    onChange={e => setCoupon(e.target.value)}
+                    type='text'
+                  />
+                </div>
+                <button className='button'>Add Coupon</button>
+              </form>
+            )}
           </div>
           <hr />
           <div>

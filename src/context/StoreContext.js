@@ -27,6 +27,7 @@ const isBrowser = typeof window !== 'undefined'
 export const StoreProvider = ({ children }) => {
   const [checkout, setCheckout] = useState(defaultValues.checkout)
   const [isCartOpen, setCartOpen] = useState(false)
+  const [isLoading, setLoading] = useState(false)
 
   const toggleCartOpen = () => setCartOpen(!isCartOpen)
 
@@ -73,6 +74,7 @@ export const StoreProvider = ({ children }) => {
 
   const addProductToCart = async variantId => {
     try {
+      setLoading(true)
       const lineItems = [
         {
           variantId,
@@ -84,23 +86,37 @@ export const StoreProvider = ({ children }) => {
       // window.open(addItems.webUrl, "_blank")
       setCheckout(newCheckout)
       // console.log(addItems.webUrl)
+      setLoading(false)
     } catch (e) {
+      setLoading(false)
       console.error(e)
     }
   }
 
   const removeProductFromCart = async lineItemId => {
     try {
+      setLoading(true)
       const newCheckout = await client.checkout.removeLineItems(checkout.id, [lineItemId])
       setCheckout(newCheckout)
+      setLoading(false)
     } catch (e) {
+      setLoading(false)
       console.error(e)
     }
   }
 
   const checkCoupon = async coupon => {
+    setLoading(true)
     const newCheckout = await client.checkout.addDiscount(checkout.id, coupon)
     setCheckout(newCheckout)
+    setLoading(false)
+  }
+
+  const removeCoupon = async coupon => {
+    setLoading(true)
+    const newCheckout = await client.checkout.removeDiscount(checkout.id, coupon)
+    setCheckout(newCheckout)
+    setLoading(false)
   }
 
   return (
@@ -113,6 +129,8 @@ export const StoreProvider = ({ children }) => {
         isCartOpen,
         removeProductFromCart,
         checkCoupon,
+        removeCoupon,
+        isLoading,
       }}
     >
       {children}
