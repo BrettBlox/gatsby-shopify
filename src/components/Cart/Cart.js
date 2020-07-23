@@ -64,11 +64,14 @@ const Cart = ({ style }) => {
       <div>
         Total: <h5 className='title'>${checkout.totalPrice}</h5>
       </div>
-      <div style={{ marginTop: '2rem' }}>
-        <a href={checkout.webUrl} className='button is-fullwidth is-primary'>
-          Checkout Now
-        </a>
-      </div>
+      {}
+      {checkout.lineItems.reduce((acc, item) => acc + item.quantity, 0) > 0 && (
+        <div style={{ marginTop: '2rem' }}>
+          <a href={checkout.webUrl} className='button is-fullwidth is-primary'>
+            Checkout Now
+          </a>
+        </div>
+      )}
     </animated.div>
   )
 }
