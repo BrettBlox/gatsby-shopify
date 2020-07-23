@@ -12,6 +12,7 @@ const defaultValues = {
   cart: [],
   addProductToCart: () => {},
   removeProductFromCart: () => {},
+  checkCoupon: () => {},
   client,
   checkout: {
     lineItems: [],
@@ -28,6 +29,10 @@ export const StoreProvider = ({ children }) => {
   const [isCartOpen, setCartOpen] = useState(false)
 
   const toggleCartOpen = () => setCartOpen(!isCartOpen)
+
+  useEffect(() => {
+    initializeCheckout()
+  }, [initializeCheckout])
 
   const getNewId = async () => {
     try {
@@ -66,10 +71,6 @@ export const StoreProvider = ({ children }) => {
     }
   }
 
-  useEffect(() => {
-    initializeCheckout()
-  }, [initializeCheckout])
-
   const addProductToCart = async variantId => {
     try {
       const lineItems = [
@@ -97,6 +98,11 @@ export const StoreProvider = ({ children }) => {
     }
   }
 
+  const checkCoupon = async coupon => {
+    const newCheckout = await client.checkout.addDiscount(checkout.id, coupon)
+    setCheckout(newCheckout)
+  }
+
   return (
     <StoreContext.Provider
       value={{
@@ -106,6 +112,7 @@ export const StoreProvider = ({ children }) => {
         toggleCartOpen,
         isCartOpen,
         removeProductFromCart,
+        checkCoupon,
       }}
     >
       {children}
