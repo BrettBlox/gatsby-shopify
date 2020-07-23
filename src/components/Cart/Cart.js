@@ -3,7 +3,8 @@ import { animated } from 'react-spring'
 import { StoreContext } from '../../context/StoreContext'
 
 const Cart = ({ style }) => {
-  const { isCartOpen, checkout, toggleCartOpen } = useContext(StoreContext)
+  const { isCartOpen, checkout, toggleCartOpen, removeProductFromCart } = useContext(StoreContext)
+
   return (
     <animated.div
       style={{
@@ -11,8 +12,7 @@ const Cart = ({ style }) => {
         position: 'fixed',
         top: 0,
         right: 0,
-        width: '40%',
-        overflowY: 'scroll',
+        width: '50%',
         height: '100%',
         background: 'white',
         padding: '40px 2%',
@@ -44,13 +44,17 @@ const Cart = ({ style }) => {
               marginRight: 10,
             }}
           >
-            <img src={item.variant.image.src} alt={item.variant.title} />
+            <img src={item.variant.image.src} alt='' />
           </div>
           <div>
             <h4 className='title is-4'>{item.title}</h4>
             <p className='subtitle is-5'>${item.variant.price}</p>
             <p className='subtitle is-5'>Qty: {item.quantity}</p>
-            <button type='button' className='is-small button is-danger is-outlined'>
+            <button
+              type='button'
+              onClick={() => removeProductFromCart(item.id)}
+              className='is-small button is-danger is-outlined'
+            >
               Remove
             </button>
           </div>

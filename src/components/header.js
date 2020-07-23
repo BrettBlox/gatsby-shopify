@@ -9,12 +9,14 @@ import logo from '../images/logo.svg'
 import Cart from './Cart/Cart'
 
 const Header = ({ siteTitle }) => {
-  const { isCartOpen, toggleCartOpen } = useContext(StoreContext)
+  const { isCartOpen, toggleCartOpen, checkout } = useContext(StoreContext)
   const transitions = useTransition(isCartOpen, null, {
     from: { transform: 'translate3d(100%, 0, 0)' },
     enter: { transform: 'translate3d(0, 0, 0)' },
     leave: { transform: 'translate3d(100%, 0, 0)' },
   })
+  console.log(checkout.lineItems)
+  const qty = checkout.lineItems.reduce((total, item) => total + item.quantity, 0)
   return (
     <header className='level is-mobile' style={{ background: 'var(--purp)', boxShadow: 'var(--elevation-2)' }}>
       <div className='level-left'>
@@ -27,9 +29,31 @@ const Header = ({ siteTitle }) => {
           <button
             type='button'
             className='button'
-            style={{ background: 'transparent', border: 'none' }}
+            style={{
+              position: 'relative',
+              background: 'transparent',
+              border: 'none',
+            }}
             onClick={toggleCartOpen}
           >
+            {qty > 0 && (
+              <div
+                style={{
+                  color: 'white',
+                  position: 'absolute',
+                  background: 'var(--red)',
+                  borderRadius: 15,
+                  textAlign: 'center',
+                  height: 30,
+                  top: -5,
+                  left: -5,
+                  width: 30,
+                  lineHeight: '30px',
+                }}
+              >
+                {qty}
+              </div>
+            )}
             <FaShoppingCart style={{ color: 'white', height: 30, width: 30 }} />
           </button>
         </div>
