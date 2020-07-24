@@ -23,9 +23,12 @@ const Header = ({ siteTitle }) => {
       <header
         className='level is-mobile'
         style={{
-          padding: '10px 5%',
-          background: 'var(--cadence)',
+          padding: '30px 5%',
+          background: 'black',
           boxShadow: 'var(--elevation-2)',
+          position: 'sticky',
+          top: '-1px',
+          zIndex: 'var(--highestLevel)',
         }}
       >
         <div className='level-left' style={{ width: '100%' }}>
@@ -48,15 +51,17 @@ const Header = ({ siteTitle }) => {
             >
               {qty > 0 && (
                 <div
+                  className='button is-primary'
                   style={{
                     color: 'white',
                     position: 'absolute',
-                    background: '#000',
+                    border: 0,
                     borderRadius: 15,
                     textAlign: 'center',
+                    fontWeight: 'bold',
                     height: 30,
-                    top: -5,
-                    right: -5,
+                    top: -6,
+                    right: -6,
                     width: 30,
                     lineHeight: '30px',
                   }}
@@ -64,7 +69,7 @@ const Header = ({ siteTitle }) => {
                   {qty}
                 </div>
               )}
-              <FaShoppingCart style={{ color: 'white', height: 30, width: 30 }} />
+              <FaShoppingCart style={{ color: 'var(--red)', height: 30, width: 30 }} />
             </button>
           </div>
         </div>
