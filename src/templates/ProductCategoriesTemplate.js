@@ -9,7 +9,9 @@ const ProductCategoriesTemplate = ({ data }) => {
   return (
     <Layout>
       <div>
-        <h2 className='title'>{shopifyCollection.title}</h2>
+        <h2 style={{ marginBottom: '2rem' }} className='title'>
+          {shopifyCollection.title}
+        </h2>
         <div className='columns is-multiline'>
           {shopifyCollection.products.map(product => (
             <ProductsListingItem key={product.id} product={product} />

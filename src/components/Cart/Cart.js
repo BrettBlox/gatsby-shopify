@@ -41,7 +41,7 @@ const Cart = ({ style }) => {
       <div></div>
       {checkout.lineItems.length > 0 ? (
         <>
-          <div style={{maxHeight: '60%', overflowY: 'auto' }}>
+          <div style={{ maxHeight: '60%', overflowY: 'auto' }}>
             {checkout.lineItems.map(item => (
               <div key={item.id} style={{ display: 'flex', marginBottom: '2rem' }}>
                 <div

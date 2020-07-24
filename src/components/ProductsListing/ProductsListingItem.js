@@ -10,7 +10,10 @@ const ProductsListingItem = ({ product }) => {
   } = product
 
   return (
-    <article className='column is-one-quarter content'>
+    <article
+      style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: '1.5rem' }}
+      className='column is-one-quarter content'
+    >
       <Link to={`/product/${product.handle}`} style={{ display: 'block', marginBottom: '2rem' }}>
         <Image fluid={firstImage.localFile.childImageSharp.fluid} />
         <h3 className='title is-3'>{product.title}</h3>
