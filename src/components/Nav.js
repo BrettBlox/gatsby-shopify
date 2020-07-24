@@ -20,7 +20,10 @@ const Nav = () => {
   return (
     <nav style={{ marginLeft: '5%' }}>
       {allShopifyCollection.edges.map(edge => (
-        <Link style={{ color: '#fff', marginLeft: '15%', fontWeight: 'bold' }} to={`/${edge.node.handle}`}>
+        <Link
+          style={{ color: '#fff', marginLeft: '15%', fontWeight: 'bold', fontSize: '1.25rem' }}
+          to={`/${edge.node.handle}`}
+        >
           {edge.node.title}
         </Link>
       ))}

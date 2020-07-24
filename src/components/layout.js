@@ -21,9 +21,18 @@ const Layout = ({ children }) => {
         <main className='section' style={{ minHeight: '90vh' }}>
           {children}
         </main>
-        <footer className='footer' style={{ background: 'black', color: '#fff' }}>
-          © {new Date().getFullYear()}, Built with
-          {` `}
+        <footer
+          className='footer'
+          style={{
+            background: 'black',
+            color: '#fff',
+            justifyContent: 'center',
+            display: 'flex',
+            alignItems: 'center',
+            fontWeight: 'bold',
+          }}
+        >
+          © {new Date().getFullYear()}, Built with &nbsp;
           <a href='https://www.gatsbyjs.org'>Gatsby</a>
         </footer>
       </div>

@@ -23,7 +23,7 @@ const Billboard = () => {
             id
             localFile {
               childImageSharp {
-                fluid(maxWidth: 1200, maxHeight: 400) {
+                fluid(maxWidth: 800, maxHeight: 400) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }
@@ -48,7 +48,7 @@ const Billboard = () => {
         <h2 className='title'>Now Available</h2>
         <h3 className='title'>{product.title}</h3>
         <p className='subtitle is-4'>${firstVariant.price}</p>
-        <Link className='button' to={`/product/${product.handle}`}>
+        <Link className='button is-primary' to={`/product/${product.handle}`}>
           Learn More
         </Link>
       </div>
