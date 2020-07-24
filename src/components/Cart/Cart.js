@@ -21,7 +21,6 @@ const Cart = ({ style }) => {
         background: 'white',
         padding: '40px 2%',
         boxShadow: 'var(--elevation-4)',
-        overflow: 'auto',
         ...style,
       }}
     >
@@ -39,34 +38,37 @@ const Cart = ({ style }) => {
         Close Cart
       </button>
       <h3 className='title'>Cart</h3>
+      <div></div>
       {checkout.lineItems.length > 0 ? (
         <>
-          {checkout.lineItems.map(item => (
-            <div key={item.id} style={{ display: 'flex', marginBottom: '2rem' }}>
-              <div
-                style={{
-                  width: 60,
-                  height: 60,
-                  overflow: 'hidden',
-                  marginRight: 10,
-                }}
-              >
-                <img src={item.variant.image.src} alt='' />
-              </div>
-              <div>
-                <h4 className='title is-4'>{item.title}</h4>
-                <p className='subtitle is-5'>${item.variant.price}</p>
-                <p className='subtitle is-5'>Qty: {item.quantity}</p>
-                <button
-                  type='button'
-                  onClick={() => removeProductFromCart(item.id)}
-                  className='is-small button is-danger is-outlined'
+          <div style={{maxHeight: '60%', overflowY: 'auto' }}>
+            {checkout.lineItems.map(item => (
+              <div key={item.id} style={{ display: 'flex', marginBottom: '2rem' }}>
+                <div
+                  style={{
+                    width: 60,
+                    height: 60,
+                    overflow: 'hidden',
+                    marginRight: 10,
+                  }}
                 >
-                  Remove
-                </button>
+                  <img src={item.variant.image.src} alt='' />
+                </div>
+                <div>
+                  <h4 className='title is-4'>{item.title}</h4>
+                  <p className='subtitle is-5'>${item.variant.price}</p>
+                  <p className='subtitle is-5'>Qty: {item.quantity}</p>
+                  <button
+                    type='button'
+                    onClick={() => removeProductFromCart(item.id)}
+                    className='is-small button is-danger is-outlined'
+                  >
+                    Remove
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
 
           <div>
             {checkout.discountApplications.length > 0 ? (
