@@ -25,6 +25,7 @@ const Cart = ({ style }) => {
       }}
     >
       <button
+        type='button'
         style={{
           background: 'var(--red)',
           position: 'absolute',
@@ -56,6 +57,7 @@ const Cart = ({ style }) => {
                 <p className='subtitle is-5'>${item.variant.price}</p>
                 <p className='subtitle is-5'>Qty: {item.quantity}</p>
                 <button
+                  type='button'
                   onClick={() => removeProductFromCart(item.id)}
                   className='is-small button is-danger is-outlined'
                 >
@@ -67,18 +69,19 @@ const Cart = ({ style }) => {
 
           <div>
             {checkout.discountApplications.length > 0 ? (
-              <p>
+              <div>
                 Coupon:
                 <h5 className='title'>
                   {checkout.discountApplications[0].code} - {checkout.discountApplications[0].value.percentage}% off
                 </h5>
                 <button
+                  type='button'
                   onClick={() => removeCoupon(checkout.discountApplications[0].code)}
                   className='is-small button is-danger is-outlined'
                 >
                   Remove
                 </button>
-              </p>
+              </div>
             ) : (
               <form
                 onSubmit={e => {

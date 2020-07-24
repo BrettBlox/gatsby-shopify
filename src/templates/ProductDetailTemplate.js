@@ -10,18 +10,17 @@ const ProductDetailTemplate = ({ data }) => {
     images: [firstImage],
     variants: [firstVariant],
   } = product
-
-  const id = firstVariant.id.replace('Shopify__ProductVariant__', '')
   return (
     <Layout>
       <div className='columns'>
-        <div className='column' style={{ maxWidth: 400 }}>
+        <div className='column'>
           <Image fluid={firstImage.localFile.childImageSharp.fluid} />
         </div>
         <div className='column'>
           <h1 className='title'>{product.title}</h1>
           <p className='subtitle is-4'>${firstVariant.price}</p>
-          <AddToCart variantId={id} />
+          <p>{product.description}</p>
+          <AddToCart variantId={firstVariant.shopifyId} />
         </div>
       </div>
     </Layout>
@@ -37,8 +36,10 @@ export const query = graphql`
       handle
       title
       productType
+      description
       variants {
         id
+        shopifyId
         title
         price
         sku

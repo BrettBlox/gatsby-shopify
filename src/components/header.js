@@ -8,6 +8,7 @@ import { StoreContext } from '../context/StoreContext'
 import logo from '../images/logo.svg'
 import Cart from './Cart/Cart'
 import Loader from './Loader'
+import Nav from './Nav'
 
 const Header = ({ siteTitle }) => {
   const { isCartOpen, toggleCartOpen, checkout, isLoading } = useContext(StoreContext)
@@ -19,17 +20,24 @@ const Header = ({ siteTitle }) => {
   const qty = checkout.lineItems.reduce((total, item) => total + item.quantity, 0)
   return (
     <>
-      <header className='level is-mobile' style={{ background: 'var(--purp)', boxShadow: 'var(--elevation-2)' }}>
+      <header
+        className='level is-mobile'
+        style={{
+          padding: '10px 5%',
+          background: 'var(--purp)',
+          boxShadow: 'var(--elevation-2)',
+        }}
+      >
         <div className='level-left'>
-          <Link to='/' className='navbar-item'>
+          <Link to='/'>
             <img style={{ height: 60, maxHeight: 'none', marginBottom: 0 }} src={logo} alt='Level Up Logo' />
           </Link>
+          <Nav />
         </div>
         <div className='level-right'>
-          <div className='navbar-item'>
+          <div>
             <button
               className='button'
-              type='button'
               style={{
                 position: 'relative',
                 background: 'transparent',
