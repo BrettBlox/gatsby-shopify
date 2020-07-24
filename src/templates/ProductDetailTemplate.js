@@ -13,13 +13,14 @@ const ProductDetailTemplate = ({ data }) => {
   return (
     <Layout>
       <div className='columns'>
-        <div className='column'>
+        <div className='column' style={{ maxWidth: 400 }}>
           <Image fluid={firstImage.localFile.childImageSharp.fluid} />
         </div>
         <div className='column'>
           <h1 className='title'>{product.title}</h1>
           <p className='subtitle is-4'>${firstVariant.price}</p>
           <p>{product.description}</p>
+          <br />
           <AddToCart variantId={firstVariant.shopifyId} />
         </div>
       </div>
