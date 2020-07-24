@@ -16,11 +16,12 @@ const Cart = ({ style }) => {
         position: 'fixed',
         top: 0,
         right: 0,
-        width: '50%',
+        width: '30%',
         height: '100%',
         background: 'white',
         padding: '40px 2%',
         boxShadow: 'var(--elevation-4)',
+        overflow: 'auto',
         ...style,
       }}
     >

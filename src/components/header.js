@@ -5,7 +5,7 @@ import { useTransition } from 'react-spring'
 import { FaShoppingCart } from 'react-icons/fa'
 import '../style.scss'
 import { StoreContext } from '../context/StoreContext'
-import logo from '../images/logo.svg'
+import logo from '../images/cadence-logo.png'
 import Cart from './Cart/Cart'
 import Loader from './Loader'
 import Nav from './Nav'
@@ -24,19 +24,20 @@ const Header = ({ siteTitle }) => {
         className='level is-mobile'
         style={{
           padding: '10px 5%',
-          background: 'var(--purp)',
+          background: 'var(--cadence)',
           boxShadow: 'var(--elevation-2)',
         }}
       >
-        <div className='level-left'>
+        <div className='level-left' style={{ width: '100%' }}>
           <Link to='/'>
-            <img style={{ height: 60, maxHeight: 'none', marginBottom: 0 }} src={logo} alt='Level Up Logo' />
+            <img style={{ height: 60, maxHeight: 'none', marginBottom: 0 }} src={logo} alt='Logo' />
           </Link>
           <Nav />
         </div>
         <div className='level-right'>
           <div>
             <button
+              type='button'
               className='button'
               style={{
                 position: 'relative',
@@ -50,7 +51,7 @@ const Header = ({ siteTitle }) => {
                   style={{
                     color: 'white',
                     position: 'absolute',
-                    background: 'var(--red)',
+                    background: '#000',
                     borderRadius: 15,
                     textAlign: 'center',
                     height: 30,

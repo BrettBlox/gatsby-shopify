@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
         <main className='section' style={{ minHeight: '90vh' }}>
           {children}
         </main>
-        <footer className='footer' style={{ background: 'var(--darkPurp)', color: 'white' }}>
+        <footer className='footer' style={{ background: 'var(--cadence)', color: '#000' }}>
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href='https://www.gatsbyjs.org'>Gatsby</a>
