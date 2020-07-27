@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
         <footer
           className='footer'
           style={{
-            background: 'black',
+            background: '#222',
             color: '#fff',
             justifyContent: 'center',
             display: 'flex',

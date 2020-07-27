@@ -24,7 +24,7 @@ const Header = ({ siteTitle }) => {
         className='level is-mobile'
         style={{
           padding: '30px 5%',
-          background: 'black',
+          background: '#222',
           boxShadow: 'var(--elevation-2)',
           position: 'sticky',
           top: '-1px',
